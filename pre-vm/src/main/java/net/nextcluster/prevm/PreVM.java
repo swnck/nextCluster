@@ -119,7 +119,7 @@ public class PreVM extends NextCluster {
             }
         }
 
-        if (!env.equalsIgnoreCase("PAPER")) {
+        if (!env.equalsIgnoreCase("PAPER") && !env.equalsIgnoreCase("WATERDOGPE")) {
             instrumentation.appendToSystemClassLoaderSearch(new JarFile(platform.toFile()));
         }
         preVM.startPlatform(platform.toFile());

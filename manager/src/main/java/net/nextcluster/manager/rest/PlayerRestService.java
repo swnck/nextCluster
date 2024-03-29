@@ -10,6 +10,7 @@ public final class PlayerRestService {
 
     @GetMapping
     public ResponseEntity<Object[]> handle() {
+        if (NextCluster.instance().playerProvider() == null) return ResponseEntity.ok(new Object[0]);
         return ResponseEntity.ok(NextCluster.instance().playerProvider().players().toArray());
     }
 
