@@ -36,29 +36,29 @@ public interface PlayerProvider {
     FutureResult<List<ClusterPlayer>> playersAsync();
 
     default List<ClusterPlayer> players() {
-        return this.playersAsync().sync(new ArrayList<>());
+        return this.playersAsync().sync(new ArrayList<>(), 5);
     }
 
     default Optional<ClusterPlayer> player(UUID uniqueId) {
-        return this.playerAsync(uniqueId).sync(Optional.empty());
+        return this.playerAsync(uniqueId).sync(Optional.empty(), 5);
     }
 
     FutureResult<Optional<ClusterPlayer>> playerAsync(UUID uniqueId);
 
     default Optional<ClusterPlayer> player(String name) {
-        return this.playerAsync(name).sync(Optional.empty());
+        return this.playerAsync(name).sync(Optional.empty(), 5);
     }
 
     FutureResult<Optional<ClusterPlayer>> playerAsync(String name);
 
     default boolean isOnline(String username) {
-        return this.isOnlineAsync(username).sync(false);
+        return this.isOnlineAsync(username).sync(false, 5);
     }
 
     FutureResult<Boolean> isOnlineAsync(String username);
 
     default boolean isOnline(UUID uniqueId) {
-        return this.isOnlineAsync(uniqueId).sync(false);
+        return this.isOnlineAsync(uniqueId).sync(false, 5);
     }
 
     FutureResult<Boolean> isOnlineAsync(UUID uniqueId);
